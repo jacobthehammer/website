@@ -1,2 +1,2 @@
 # jacobthehammer.github.io
-My porfolio website
+My portfolio website
