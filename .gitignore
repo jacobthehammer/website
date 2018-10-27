@@ -1,5 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+## rm node files
+
 # compiled output
 /dist
 /tmp
@@ -86,6 +88,24 @@ jspm_packages/
 # Lerna
 lerna-debug.log
 
-# System Files
+## System Files
+# OS Generated Files
 .DS_Store
 Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
