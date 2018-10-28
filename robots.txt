@@ -1,0 +1,10 @@
+User-agent: *
+# Allow lookups for files required to make the main page work
+Allow: /files/video.mp4
+Allow: /files/video.webm
+Allow: /files/video.mov
+Allow: /index.html
+# Disallow personal stuff
+Disallow: /blog
+Disallow: /files
+Crawl-delay: 10
