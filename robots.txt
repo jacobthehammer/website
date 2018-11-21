@@ -4,7 +4,9 @@ Allow: /files/video.mp4
 Allow: /files/video.webm
 Allow: /files/video.mov
 Allow: /index.html
-# Disallow personal stuff
+# Disallow blog-related and secret sauce files
 Disallow: /blog
 Disallow: /files
+Disallow: /readme.md
+Disallow: /.gitignore
 Crawl-delay: 10
