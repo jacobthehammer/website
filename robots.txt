@@ -9,4 +9,5 @@ Disallow: /blog
 Disallow: /files
 Disallow: /readme.md
 Disallow: /.gitignore
+Disallow: /gpg.asc
 Crawl-delay: 10
