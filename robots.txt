@@ -10,4 +10,6 @@ Disallow: /files
 Disallow: /readme.md
 Disallow: /.gitignore
 Disallow: /gpg.asc
+Disallow: /files/gpg.asc
+Disallow: /files/.gitignore
 Crawl-delay: 10
