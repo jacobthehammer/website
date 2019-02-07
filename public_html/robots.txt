@@ -12,4 +12,5 @@ Disallow: /.gitignore
 Disallow: /gpg.asc
 Disallow: /files/gpg.asc
 Disallow: /files/.gitignore
+Disallow: /nginx.txt
 Crawl-delay: 10
