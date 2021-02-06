@@ -1,0 +1,67 @@
+Josh,
+
+To set up your nginx server block, you'll have to do the following:
+
+1. Configure your DNS records to point to this server:
+
+A     |  NAME: WWW  	  | VALUE: [Server's IPv4 Address]
+AAAA  |  NAME: WWW  	  | VALUE: [Server's IPv6 Address]
+CNAME |  NAME: joshuak.me | VALUE: www.joshuak.me
+
+Note: I recommend using Cloudflare SSL to encrypt your connection. It stops users from being able to SSH into
+the server by using your domain.
+
+2. Configure Nginx
+    a) Create the directory for your website
+	sudo mkdir -p /var/www/joshuak.me/public_html
+    b) Create the default page for your domain (for our purposes, this is index.html)
+	sudo nano /var/www/joshuak.me/public_html/index.html
+	
+	<!DOCTYPE HTML>
+	    <head>
+	      <title>josh's cool website</title>
+	    </head>
+	  <h3>Social Satire?</h3>
+	    <p>Yes, that's right. Some would classify us as politically incorrect, we prefer the term "observant".</p>
+	</html>
+
+    c) Change the ownership of all files in your website's directory to www-data, Nginx's user account
+	sudo chown -R www-data: /var/www/joshuak.me/
+    d) Create your server block
+        In your editor of choice (or copy it from here and echo it into the file, since this should just work), 
+	type this:
+	
+	sudo nano /etc/nginx/sites-available/joshuak.me
+	
+	server {
+	    listen 80;
+	    listen [::]:80;
+	    
+	    root /var/www/joshuak.me/public_html;
+
+	    index index.html;
+
+	    server_name joshuak.me www.joshuak.me;
+
+	    access_log /var/log/nginx/joshuak.me.access.log;
+	    error_log /var/log/nginx/joshuak.me.error.log;
+
+	    location / {
+	        try_files $uri $uri/ =404;
+	    }
+	}
+
+    e) Create a symlink from this file to the Nginx enabled directory
+	sudo ln -s /etc/nginx/sites-available/joshuak.me /etc/nginx/sites-enabled/
+    f) Set the new Nginx configuration and make sure there are no errors (errors will echo to the terminal)
+	sudo nginx -t
+    g) Restart nginx
+	sudo systemctl restart nginx
+    h) [OPTIONAL] Enable certbot and Let'sEncrypt SSL
+	If you choose not to use CloudFlare but still want to use SSL, Let'sEncrypt is a free signing authority
+	promoted by the EFF. To enable it for this website, run the following command in terminal:
+
+	sudo certbot --nginx -d joshuak.me -d www.joshuak.me
+
+	certbot will ask you if you want to direct all traffic to https. That's my set up, but it is your call.
+	Nginx will automatically reload when you finish the wizard.
